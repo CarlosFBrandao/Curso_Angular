@@ -1,11 +1,19 @@
-<form #form="ngForm">
+<form #form="ngForm" (ngSubmit)="submitForm(form)">
     <label>Nome
-        <input type="text" name="nome" ngModel>
+        <input type="text" name="nome" #nome="ngModel" [ngModel]="nome.value" required>
+        <span *ngIf="nome.invalid &&(nome.dirty &&nome.touched)">
+            Invalid
+        </span>
     </label>
     <br>
     <br>
+    valido:{{nome.valid}}
+    preenchido:{{nome.dirty}}
+    Clicado:{{form.touched}}
+    <br>
+    <br>
     <label>Masculino:
-        <input type="radio" name="sexo" value="Masculino" ngModel>
+        <input type="radio" name="sexo" value="Masculino" ngModel required>
     </label>
     <br>
     <br>
@@ -37,9 +45,15 @@
     <br>
     <select name="comidas" ngModel>
         <option value="">
-            
+            Selecione um alimento
+        </option>
+        <option *ngFor="let item of listComida" [ngValue]="item">
+            {{item.comida}}-{{item.preco}}
         </option>
     </select>
+    <br>
+    <br>
+    <button [disabled]="form.invalid" type="submit">Enviar</button>
 </form>
 
 {{form.value | json}}
