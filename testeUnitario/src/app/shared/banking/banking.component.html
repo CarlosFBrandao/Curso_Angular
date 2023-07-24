@@ -1,0 +1,23 @@
+<p>
+    <strong>
+        Olá!
+    </strong>
+    <br>
+    Dados da conta
+</p>
+<p>
+    Poupança: R$:
+    <span id="saldoPoupanca">{{getPoupanca}}</span>
+    <br>
+    <input id="inputSacar" type="text" #sacar>
+    <button id="btnSacar" (click)="setSacar(sacar.value)">Sacar</button>
+</p>
+<p>
+    carteira: R$: 
+    <span id="saldoCarteira">{{getCarteira}}</span>
+    <br>
+    <input id="inputDepositar" type="text" #depositar>
+    <button id="btnDepositar" (click)="setDepositar(depositar.value)">Depositar</button>
+</p>
+
+<app-list></app-list>
